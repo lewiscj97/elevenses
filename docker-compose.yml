@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      # Bound to localhost only: this is a dev stack and must not be reachable from the LAN.
+      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-3000}:3000"
+    volumes:
+      - ./frontend:/app
+      # Keep the container's node_modules; don't let the host directory shadow it.
+      - /app/node_modules
