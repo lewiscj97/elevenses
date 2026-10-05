@@ -34,12 +34,14 @@ justfile    Single entry point for build, test, lint and e2e commands
 3. **Tests first-class.** New behaviour needs tests. Bug fixes need a test that fails before the fix.
 4. **Run the checks.** Before saying a task is done, run tests, lint and type checks, and report the actual results. Never claim they pass without running them.
 5. **Say what you didn't do.** List anything skipped, assumed or left uncertain in the PR description.
+6. **Security is key.** Must consider security as high priority when writing new code or infrastructure.
+7. **Explain why you're doing things**: This is a learning project, where the focus should be placed mostly on learning how to use agentic workflows, rather than the actual product.
 
 ## Conventions
 
 - Python: type hints everywhere, ruff-formatted, small modules, no business logic in route handlers.
 - TypeScript: strict mode, no `any` without a comment explaining why, function components and hooks.
-- Prefer boring, well-known libraries. Don't add a dependency without stating why in the PR.
+- Prefer boring, well-known libraries. Don't add a dependency without stating why in the PR. If a dependency hasn't been updated within 1 year, find an alternative or request permission for use.
 - Commit messages: imperative mood, one line summary, reference the issue number.
 - Branch names: `issue-<number>-short-description`.
 
