@@ -1,9 +1,6 @@
 # Learning log
 
 ## Date: 05/10/26
-### Task: Initial project setup
-
-## Date: 05/10/26
 ### Task: Issue #1, Docker Compose skeleton (AI agent: Claude Sonnet 5.5)
 
 **What worked**
