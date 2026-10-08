@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 
+from app.routes import health
+
 app = FastAPI(title="elevenses")
-
-
-@app.get("/")
-def read_root() -> dict[str, str]:
-    return {"message": "elevenses backend is running"}
+app.include_router(health.router)

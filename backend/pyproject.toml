@@ -5,7 +5,18 @@ description = "elevenses backend API"
 requires-python = ">=3.13"
 dependencies = [
     "fastapi>=0.142,<1",
+    # FastAPI allows starlette>=0.46, but TestClient only supports httpx2 from 1.2.
+    "starlette>=1.2,<2",
     "uvicorn[standard]>=0.54,<1",
+]
+
+# Development tools, pinned exactly so lint and type rules only change when we choose.
+[dependency-groups]
+dev = [
+    "httpx2==2.13.1",
+    "mypy==2.4.0",
+    "pytest==9.1.1",
+    "ruff==0.16.10",
 ]
 
 [build-system]
@@ -14,3 +25,20 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The app is bind-mounted rather than installed, so make it importable from the tests.
+pythonpath = ["."]
+# Fail on warnings such as deprecations instead of letting them scroll past.
+filterwarnings = ["error"]
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true

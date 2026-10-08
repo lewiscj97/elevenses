@@ -11,11 +11,13 @@ WORKDIR /app
 
 # Install dependencies first so this layer is cached until pyproject.toml changes.
 # The package itself is not installed: the source is bind-mounted at runtime.
+# The dev group (pytest, ruff, mypy) is included so the checks run inside this container.
 COPY pyproject.toml ./
 RUN python - <<'EOF' > /tmp/requirements.txt && pip install --no-cache-dir -r /tmp/requirements.txt
 import tomllib
 with open("pyproject.toml", "rb") as f:
-    print("\n".join(tomllib.load(f)["project"]["dependencies"]))
+    pyproject = tomllib.load(f)
+print("\n".join(pyproject["project"]["dependencies"] + pyproject["dependency-groups"]["dev"]))
 EOF
 
 COPY --chown=app:app . .

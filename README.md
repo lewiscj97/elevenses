@@ -14,7 +14,7 @@ docker compose up --build
 
 | Service | URL |
 |---|---|
-| Backend (FastAPI) | http://localhost:8000/ |
+| Backend (FastAPI) | http://localhost:8000/health |
 | Frontend (React + Vite) | http://localhost:3000/ |
 
 Edits under `backend/` and `frontend/` reload automatically. Stop everything with `docker compose down`.
